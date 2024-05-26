@@ -51,6 +51,7 @@ namespace LABA6
             }
 
             picDisplay.Invalidate();
+            lblParticleCount.Text = $"Количество частиц: {emitter.ActiveParticlesCount}";
         }
         private void picDisplay_MouseMove(object sender, MouseEventArgs e)
         {

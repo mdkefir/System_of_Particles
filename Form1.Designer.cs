@@ -46,6 +46,7 @@
             this.lblSpeed = new System.Windows.Forms.Label();
             this.lblParticlesPerTick = new System.Windows.Forms.Label();
             this.lblLife = new System.Windows.Forms.Label();
+            this.lblParticleCount = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpreading)).BeginInit();
@@ -199,11 +200,20 @@
             this.lblLife.Size = new System.Drawing.Size(0, 13);
             this.lblLife.TabIndex = 15;
             // 
+            // lblParticleCount
+            // 
+            this.lblParticleCount.AutoSize = true;
+            this.lblParticleCount.Location = new System.Drawing.Point(612, 280);
+            this.lblParticleCount.Name = "lblParticleCount";
+            this.lblParticleCount.Size = new System.Drawing.Size(0, 13);
+            this.lblParticleCount.TabIndex = 16;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblParticleCount);
             this.Controls.Add(this.lblLife);
             this.Controls.Add(this.lblParticlesPerTick);
             this.Controls.Add(this.lblSpeed);
@@ -252,6 +262,7 @@
         private System.Windows.Forms.Label lblSpeed;
         private System.Windows.Forms.Label lblParticlesPerTick;
         private System.Windows.Forms.Label lblLife;
+        private System.Windows.Forms.Label lblParticleCount;
     }
 }
 

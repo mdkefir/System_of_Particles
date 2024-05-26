@@ -26,7 +26,6 @@ namespace LABA6
         public int RadiusMax = 10; // максимальный радиус частицы
         public int LifeMin = 20; // минимальное время жизни частицы
         public int LifeMax = 100; // максимальное время жизни частицы
-
         public int ParticlesPerTick = 1; // добавил новое поле
 
         public Color ColorFrom = Color.White; // начальный цвет частицы
@@ -48,35 +47,28 @@ namespace LABA6
         {
             int particlesToCreate = ParticlesPerTick; // фиксируем счетчик сколько частиц нам создавать за тик
 
-            foreach (var particle in particles)
+            foreach (var particle in particles.ToList())
             {
-                if (particle.Life <= 0) // если частицы умерла
+                if (particle.Life <= 0) // если частица умерла
                 {
-                    /* 
-                     * то проверяем надо ли создать частицу
-                     */
-                    if (particlesToCreate > 0)
-                    {
-                        /* у нас как сброс частицы равносилен созданию частицы */
-                        particlesToCreate -= 1; // поэтому уменьшаем счётчик созданных частиц на 1
-                        ResetParticle(particle);
-                    }
+                    particles.Remove(particle); // удаляем частицу из списка
+                    continue;
                 }
-                else
+
+                // каждая точка по-своему воздействует на вектор скорости
+                foreach (var point in impactPoints)
                 {
-                    // каждая точка по-своему воздействует на вектор скорости
-                    foreach (var point in impactPoints)
-                    {
-                        point.ImpactParticle(particle);
-                    }
-
-                    // а это старый код, его не трогаем
-                    particle.SpeedX += GravitationX;
-                    particle.SpeedY += GravitationY;
-
-                    particle.X += particle.SpeedX;
-                    particle.Y += particle.SpeedY;
+                    point.ImpactParticle(particle);
                 }
+
+                // а это старый код, его не трогаем
+                particle.SpeedX += GravitationX;
+                particle.SpeedY += GravitationY;
+
+                particle.X += particle.SpeedX;
+                particle.Y += particle.SpeedY;
+
+                particle.Life -= 1;
             }
 
             // второй цикл меняем на while, 
@@ -111,6 +103,14 @@ namespace LABA6
             particle.SpeedY = -(float)(Math.Sin(direction / 180 * Math.PI) * speed);
 
             particle.Radius = Particle.rand.Next(RadiusMin, RadiusMax);
+        }
+
+        public int ActiveParticlesCount
+        {
+            get
+            {
+                return particles.Count(p => p.Life > 0);
+            }
         }
 
 
