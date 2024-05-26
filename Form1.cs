@@ -46,7 +46,7 @@ namespace LABA6
 
             using (var g = Graphics.FromImage(picDisplay.Image))
             {
-                g.Clear(Color.Black);
+                g.Clear(Color.White);
                 emitter.Render(g); // а тут теперь рендерим через эмиттер
             }
 
