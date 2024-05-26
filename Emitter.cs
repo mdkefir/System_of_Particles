@@ -14,7 +14,7 @@ namespace LABA6
         public int MousePositionY;
 
         public float GravitationX = 0;
-        public float GravitationY = 0; // пусть гравитация будет силой один пиксель за такт, нам хватит
+        public float GravitationY = 1; // пусть гравитация будет силой один пиксель за такт, нам хватит
 
         public int X; // координата X центра эмиттера, будем ее использовать вместо MousePositionX
         public int Y; // соответствующая координата Y 
@@ -27,7 +27,7 @@ namespace LABA6
         public int LifeMin = 20; // минимальное время жизни частицы
         public int LifeMax = 100; // максимальное время жизни частицы
 
-        public int ParticlesPerTick = 1;
+        public int ParticlesPerTick = 1; // добавил новое поле
 
         public Color ColorFrom = Color.White; // начальный цвет частицы
         public Color ColorTo = Color.FromArgb(0, Color.Black); // конечный цвет частиц
@@ -46,12 +46,21 @@ namespace LABA6
 
         public void UpdateState()
         {
+            int particlesToCreate = ParticlesPerTick; // фиксируем счетчик сколько частиц нам создавать за тик
+
             foreach (var particle in particles)
             {
-                particle.Life -= 1;
-                if (particle.Life < 0)
+                if (particle.Life <= 0) // если частицы умерла
                 {
-                    ResetParticle(particle);
+                    /* 
+                     * то проверяем надо ли создать частицу
+                     */
+                    if (particlesToCreate > 0)
+                    {
+                        /* у нас как сброс частицы равносилен созданию частицы */
+                        particlesToCreate -= 1; // поэтому уменьшаем счётчик созданных частиц на 1
+                        ResetParticle(particle);
+                    }
                 }
                 else
                 {
@@ -70,21 +79,15 @@ namespace LABA6
                 }
             }
 
-            // добавил генерацию частиц
-            // генерирую не более 10 штук за тик
-            for (var i = 0; i < 10; ++i)
+            // второй цикл меняем на while, 
+            // этот новый цикл также будет срабатывать только в самом начале работы эмиттера
+            // собственно пока не накопится критическая масса частиц
+            while (particlesToCreate >= 1)
             {
-                if (particles.Count < ParticlesCount) // пока частиц меньше 500 генерируем новые
-                {
-                    /* ну и тут чуток подкрутили */
-                    var particle = CreateParticle();
-                    ResetParticle(particle);
-                    particles.Add(particle);
-                }
-                else
-                {
-                    break; // а если частиц уже 500 штук, то ничего не генерирую
-                }
+                particlesToCreate -= 1;
+                var particle = CreateParticle();
+                ResetParticle(particle);
+                particles.Add(particle);
             }
         }
 
