@@ -102,6 +102,7 @@
             this.tbSpreading.Name = "tbSpreading";
             this.tbSpreading.Size = new System.Drawing.Size(152, 45);
             this.tbSpreading.TabIndex = 5;
+            this.tbSpreading.Scroll += new System.EventHandler(this.tbSpreading_Scroll);
             // 
             // label2
             // 
@@ -115,10 +116,11 @@
             // tbSpeed
             // 
             this.tbSpeed.Location = new System.Drawing.Point(615, 130);
-            this.tbSpeed.Maximum = 359;
+            this.tbSpeed.Maximum = 100;
             this.tbSpeed.Name = "tbSpeed";
             this.tbSpeed.Size = new System.Drawing.Size(152, 45);
             this.tbSpeed.TabIndex = 7;
+            this.tbSpeed.Scroll += new System.EventHandler(this.tbSpeed_Scroll);
             // 
             // label3
             // 
@@ -132,10 +134,11 @@
             // tbParticlesPerTick
             // 
             this.tbParticlesPerTick.Location = new System.Drawing.Point(615, 181);
-            this.tbParticlesPerTick.Maximum = 359;
+            this.tbParticlesPerTick.Maximum = 500;
             this.tbParticlesPerTick.Name = "tbParticlesPerTick";
             this.tbParticlesPerTick.Size = new System.Drawing.Size(152, 45);
             this.tbParticlesPerTick.TabIndex = 9;
+            this.tbParticlesPerTick.Scroll += new System.EventHandler(this.tbParticlesPerTick_Scroll);
             // 
             // label4
             // 
@@ -149,10 +152,11 @@
             // tbLife
             // 
             this.tbLife.Location = new System.Drawing.Point(615, 232);
-            this.tbLife.Maximum = 359;
+            this.tbLife.Maximum = 100;
             this.tbLife.Name = "tbLife";
             this.tbLife.Size = new System.Drawing.Size(152, 45);
             this.tbLife.TabIndex = 11;
+            this.tbLife.Scroll += new System.EventHandler(this.tbLife_Scroll);
             // 
             // label5
             // 
@@ -217,7 +221,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.picDisplay);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Распределение частиц";
             ((System.ComponentModel.ISupportInitialize)(this.picDisplay)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbDirection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbSpreading)).EndInit();

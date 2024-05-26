@@ -64,5 +64,31 @@ namespace LABA6
             emitter.Direction = tbDirection.Value; // направлению эмиттера присваиваем значение ползунка 
             lblDirection.Text = $"{tbDirection.Value}°";
         }
+
+        private void tbSpreading_Scroll(object sender, EventArgs e)
+        {
+            emitter.Spreading = tbSpreading.Value; // распределению присваиваем значение ползунка 
+            lblSpreading.Text = $"{tbSpreading.Value}°";
+        }
+
+        private void tbSpeed_Scroll(object sender, EventArgs e)
+        {
+            emitter.SpeedMin = tbSpeed.Value; // минимальной скорости присваиваем значение ползунка 
+            emitter.SpeedMax = tbSpeed.Value;
+            lblSpeed.Text = $"{tbSpeed.Value}";
+        }
+
+        private void tbParticlesPerTick_Scroll(object sender, EventArgs e)
+        {
+            emitter.ParticlesPerTick = tbParticlesPerTick.Value; // количеству частиц за тик присваиваем значение ползунка 
+            lblParticlesPerTick.Text = $"{tbParticlesPerTick.Value}";
+        }
+
+        private void tbLife_Scroll(object sender, EventArgs e)
+        {
+            emitter.LifeMin = tbLife.Value; // минимальной продолжительности жизни присваиваем значение ползунка 
+            emitter.LifeMax = tbLife.Value;
+            lblLife.Text = $"{tbLife.Value}";
+        }
     }
 }
