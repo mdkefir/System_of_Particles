@@ -67,14 +67,22 @@ namespace LABA6
         public Color ToColor;
 
         // для смеси цветов
+        public static int Clamp(int value, int min, int max)
+        {
+            if (value < min) return min;
+            if (value > max) return max;
+            return value;
+        }
+
+        // для смеси цветов
         public static Color MixColor(Color color1, Color color2, float k)
         {
-            return Color.FromArgb(
-                (int)(color2.A * k + color1.A * (1 - k)),
-                (int)(color2.R * k + color1.R * (1 - k)),
-                (int)(color2.G * k + color1.G * (1 - k)),
-                (int)(color2.B * k + color1.B * (1 - k))
-            );
+            int a = Clamp((int)(color2.A * k + color1.A * (1 - k)), 0, 255);
+            int r = Clamp((int)(color2.R * k + color1.R * (1 - k)), 0, 255);
+            int g = Clamp((int)(color2.G * k + color1.G * (1 - k)), 0, 255);
+            int b = Clamp((int)(color2.B * k + color1.B * (1 - k)), 0, 255);
+
+            return Color.FromArgb(a, r, g, b);
         }
 
         // ну и отрисовку перепишем

@@ -91,5 +91,23 @@ namespace LABA6
             emitter.LifeMax = tbLife.Value;
             lblLife.Text = $"{tbLife.Value}";
         }
+
+        private void picDisplay_MouseClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                var counter = new ParticleCounter
+                {
+                    X = e.X,
+                    Y = e.Y
+                };
+                emitter.impactPoints.Add(counter);
+            }
+            else if (e.Button == MouseButtons.Right)
+            {
+                // удаляем счетчики, попадающие под курсор мыши
+                emitter.impactPoints.RemoveAll(p => p is ParticleCounter && Math.Sqrt((p.X - e.X) * (p.X - e.X) + (p.Y - e.Y) * (p.Y - e.Y)) < 20);
+            }
+        }
     }
 }
